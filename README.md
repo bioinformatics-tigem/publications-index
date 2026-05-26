@@ -9,23 +9,25 @@ The index is intended to be public and contains only non-sensitive metadata abou
 The public landing page is generated automatically from:
 
 ```text
-docs/_data/publications.yml
+docs/publications.json
 ```
 
-GitHub Pages renders the table and project cards from that single data file.
+The static page reads that single data file and renders the table and project cards in the browser.
 
 ## Add a New Workflow
 
-To add a publication-associated workflow, add one entry to `docs/_data/publications.yml`:
+To add a publication-associated workflow, add one entry to `docs/publications.json`:
 
-```yaml
-- year: 2026
-  topic: single-cell RNA-seq
-  dataset: E-MTAB-16673
-  pi: De Matteis
-  status: In submission; workflow private until publication
-  repository_name: scRNAseq-OCRL-KO-kidney-organoids
-  repository_url: https://github.com/bioinformatics-tigem/scRNAseq-OCRL-KO-kidney-organoids
+```json
+{
+  "year": "2026",
+  "topic": "single-cell RNA-seq",
+  "dataset": "E-MTAB-16673",
+  "pi": "De Matteis",
+  "status": "In submission; workflow private until publication",
+  "repository_name": "scRNAseq-OCRL-KO-kidney-organoids",
+  "repository_url": "https://github.com/bioinformatics-tigem/scRNAseq-OCRL-KO-kidney-organoids"
+}
 ```
 
 Then commit and push. GitHub Pages will update automatically.
