@@ -6,6 +6,10 @@ The index is intended to be public and contains only non-sensitive metadata abou
 
 ## Landing Page
 
+The public landing page for this index is available at:
+
+https://bioinformatics-tigem.github.io/publications-index/
+
 The public landing page is generated automatically from:
 
 ```text
@@ -13,6 +17,8 @@ docs/publications.json
 ```
 
 The static page reads that single data file and renders the table and project cards in the browser.
+
+The site itself is served from the `gh-pages` branch, which is generated from the contents of `docs/`.
 
 ## Add a New Workflow
 
