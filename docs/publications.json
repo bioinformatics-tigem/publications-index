@@ -1,0 +1,11 @@
+[
+  {
+    "year": "2026",
+    "topic": "single-cell RNA-seq",
+    "dataset": "E-MTAB-16673",
+    "pi": "De Matteis",
+    "status": "In submission; workflow private until publication",
+    "repository_name": "scRNAseq-OCRL-KO-kidney-organoids",
+    "repository_url": "https://github.com/bioinformatics-tigem/scRNAseq-OCRL-KO-kidney-organoids"
+  }
+]
