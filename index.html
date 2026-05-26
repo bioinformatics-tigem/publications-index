@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TIGEM Bioinformatics Core | Reproducible Analysis Workflows</title>
+  <meta name="description" content="Reproducible analysis workflows maintained by the TIGEM Bioinformatics Core.">
+  <style>
+    :root {
+      --bg: #f7f8fa;
+      --text: #20242a;
+      --muted: #5d6673;
+      --line: #d9dee7;
+      --panel: #ffffff;
+      --accent: #0f766e;
+      --accent-dark: #115e59;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    header {
+      background: #102027;
+      color: white;
+      padding: 56px 24px 44px;
+    }
+    main, .inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+    h2 {
+      margin: 40px 0 14px;
+      font-size: 1.55rem;
+    }
+    p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      max-width: 860px;
+    }
+    header p { color: #dce5e8; }
+    main { padding: 34px 24px 56px; }
+    .notice {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      padding: 18px 20px;
+      border-radius: 6px;
+      margin: 24px 0;
+    }
+    .standards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+      padding: 0;
+      list-style: none;
+    }
+    .standards li, .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 16px;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 860px;
+    }
+    th, td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #edf2f5;
+      font-weight: 650;
+    }
+    tr:last-child td { border-bottom: 0; }
+    a {
+      color: var(--accent-dark);
+      font-weight: 600;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.05rem;
+    }
+    .meta {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: var(--muted);
+    }
+    .meta li { margin: 6px 0; }
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 24px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="inner">
+      <h1>TIGEM Bioinformatics Core</h1>
+      <p>Reproducible analysis workflows associated with scientific publications and collaborative research projects.</p>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>Mission</h2>
+      <p>The TIGEM Bioinformatics Core supports reproducibility, transparency, and long-term accessibility of computational analyses by sharing documented code, configuration files, software requirements, metadata templates, and links to public datasets whenever possible.</p>
+    </section>
+
+    <section class="notice">
+      <p>This public index contains only non-sensitive metadata about analysis workflows. It does not include raw data, processed data, access keys, credentials, or unpublished analysis outputs. Some linked workflow repositories may remain private while the corresponding manuscript is under submission or peer review.</p>
+    </section>
+
+    <section>
+      <h2>Workflow Standards</h2>
+      <ul class="standards">
+        <li>Documented notebooks or scripts</li>
+        <li>Software requirements or environment files</li>
+        <li>Configuration files for paths and parameters</li>
+        <li>Sample metadata templates</li>
+        <li>Public dataset accession numbers</li>
+        <li>Instructions to regenerate key input objects</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Publications And Workflows</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Topic</th>
+              <th>Dataset</th>
+              <th>PI</th>
+              <th>Status</th>
+              <th>Repository</th>
+            </tr>
+          </thead>
+          <tbody id="publications-table">
+            <tr><td colspan="6">Loading publications...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Workflow Cards</h2>
+      <div id="workflow-cards" class="cards"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="inner">For questions about these workflows, contact the TIGEM Bioinformatics Core at <a href="mailto:bicore@tigem.it">bicore@tigem.it</a>.</div>
+  </footer>
+
+  <script>
+    const esc = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    }[char]));
+
+    fetch("publications.json")
+      .then((response) => {
+        if (!response.ok) throw new Error(`Could not load publications.json (${response.status})`);
+        return response.json();
+      })
+      .then((publications) => {
+        const rows = publications.map((pub) => `
+          <tr>
+            <td>${esc(pub.year)}</td>
+            <td>${esc(pub.topic)}</td>
+            <td>${esc(pub.dataset)}</td>
+            <td>${esc(pub.pi)}</td>
+            <td>${esc(pub.status)}</td>
+            <td><a href="${esc(pub.repository_url)}">${esc(pub.repository_name)}</a></td>
+          </tr>
+        `).join("");
+
+        const cards = publications.map((pub) => `
+          <article class="card">
+            <h3><a href="${esc(pub.repository_url)}">${esc(pub.repository_name)}</a></h3>
+            <ul class="meta">
+              <li><strong>Year:</strong> ${esc(pub.year)}</li>
+              <li><strong>Topic:</strong> ${esc(pub.topic)}</li>
+              <li><strong>Dataset:</strong> ${esc(pub.dataset)}</li>
+              <li><strong>PI:</strong> ${esc(pub.pi)}</li>
+              <li><strong>Status:</strong> ${esc(pub.status)}</li>
+            </ul>
+          </article>
+        `).join("");
+
+        document.getElementById("publications-table").innerHTML = rows;
+        document.getElementById("workflow-cards").innerHTML = cards;
+      })
+      .catch((error) => {
+        document.getElementById("publications-table").innerHTML = `<tr><td colspan="6">${esc(error.message)}</td></tr>`;
+      });
+  </script>
+</body>
+</html>
