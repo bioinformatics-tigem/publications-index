@@ -12,6 +12,8 @@
       --muted: #5d6673;
       --line: #d9dee7;
       --panel: #ffffff;
+      --brand-orange: #f58220;
+      --brand-green-light: #b7f7cf;
       --accent: #0f766e;
       --accent-dark: #115e59;
     }
@@ -24,7 +26,7 @@
       line-height: 1.55;
     }
     header {
-      background: #102027;
+      background: var(--brand-orange);
       color: white;
       padding: 56px 24px 44px;
     }
@@ -38,6 +40,7 @@
       line-height: 1.08;
       letter-spacing: 0;
     }
+    header h1 { color: var(--brand-green-light); }
     h2 {
       margin: 40px 0 14px;
       font-size: 1.55rem;
@@ -47,7 +50,7 @@
       color: var(--muted);
       max-width: 860px;
     }
-    header p { color: #dce5e8; }
+    header p { color: #fff8ef; }
     main { padding: 34px 24px 56px; }
     .notice {
       background: var(--panel);
