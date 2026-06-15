@@ -7,5 +7,18 @@
     "status": "In submission; workflow private until publication",
     "repository_name": "scRNAseq-OCRL-KO-kidney-organoids",
     "repository_url": "https://github.com/bioinformatics-tigem/scRNAseq-OCRL-KO-kidney-organoids"
+  },
+
+{
+    "year": "2026",
+    "topic": "Single-Cell RNA-Seq",
+    "dataset": "Not available",
+    "pi": "Galietta",
+    "status": "In submission; workflow private until publication",
+    "repository_name": "scRNAseq-CF-NON_CF",
+    "repository_url": "https://github.com/bioinformatics-tigem/scRNAseq-CF-NON_CF"
   }
+
+
+
 ]
