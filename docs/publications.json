@@ -3,8 +3,8 @@
     "year": "2026",
     "topic": "single-cell RNA-seq",
     "dataset": "E-MTAB-16673",
-    "pi": "De Matteis",
-    "status": "In submission; workflow private until publication",
+    "pi": "Antonella De Matteis",
+    "status": "Accepted",
     "repository_name": "scRNAseq-OCRL-KO-kidney-organoids",
     "repository_url": "https://github.com/bioinformatics-tigem/scRNAseq-OCRL-KO-kidney-organoids"
   },
@@ -12,11 +12,11 @@
 {
     "year": "2026",
     "topic": "Single-Cell RNA-Seq",
-    "dataset": "Not available",
-    "pi": "Galietta",
-    "status": "In submission; workflow private until publication",
+    "dataset": "GSE335566",
+    "pi": "Luis Galietta",
+    "status": "Accepted",
     "repository_name": "scRNAseq-CF-NON_CF",
-    "repository_url": "https://github.com/bioinformatics-tigem/scRNAseq-CF-NON_CF"
+    "repository_url": "https://github.com/bioinformatics-tigem/Galietta-airway-scRNAseq"
   }
 
 
